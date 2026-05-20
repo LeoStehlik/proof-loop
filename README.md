@@ -15,8 +15,6 @@ Use it when an agent, team, or multi-agent sprint needs a clear boundary between
 - separate builder and verifier roles in multi-agent coding work
 - leave proof artifacts in the repo for future review
 
-![Proof Loop terminal demo showing a passing verifier report](assets/proof-loop-demo.jpg)
-
 ![Animated terminal demo: Proof Loop doctor, check, and report commands](assets/proof-loop-terminal-demo.svg)
 
 Proof artifacts and role-brief examples are indexed in [`examples/README.md`](examples/README.md).
