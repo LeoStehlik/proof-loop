@@ -209,6 +209,22 @@ Use Proof Loop when you need a specific task to finish with evidence. Use [Loops
 See [`references/loopsmith-bridge.md`](references/loopsmith-bridge.md).
 
 
+## When To Use Which Repo
+
+Use this repo when a specific coding task needs evidence before anyone is allowed to call it done. Proof Loop freezes the spec, separates builder and verifier roles, requires proof artifacts, and records verdicts in the repo.
+
+Use the neighbouring tools at different points in the workflow:
+
+| Need | Use |
+| --- | --- |
+| Turn a fuzzy request into an executable agent brief | [Brief Master](https://github.com/LeoStehlik/brief-master) |
+| Prove one coding task is actually done | [Proof Loop](https://github.com/LeoStehlik/proof-loop) |
+| Improve repeated agent behaviour with evals | [Loopsmith](https://github.com/LeoStehlik/loopsmith) |
+| Keep source-backed memory for long-running agents | [Sovereign Brain](https://github.com/LeoStehlik/decoupled-agent-memory) |
+| Stop frontend agents producing generic UI sludge | [no-slop-ui](https://github.com/LeoStehlik/no-slop-ui) |
+
+A practical chain looks like this: messy request -> Brief Master brief -> Proof Loop task -> Loopsmith eval if the same failure keeps recurring -> Sovereign Brain records the durable decision.
+
 ## Related Tools
 
 - [Loopsmith](https://github.com/LeoStehlik/loopsmith) - use when Proof Loop exposes a repeated agent behaviour problem that should become an eval and promotion loop.
