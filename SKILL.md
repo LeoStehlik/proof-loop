@@ -1,6 +1,6 @@
 ---
 name: proof-loop
-description: Multi-agent sprint protocol that prevents AI coding agents from declaring done without proof. Enforces spec freeze before build, role-separated subagents (builder never verifies own work), explicit acceptance criteria (AC1, AC2...), and durable verdict artifacts in the repo. Use when briefing agents on any non-trivial coding task, sprint, or feature where you need verifiable proof of completion. Works with Codex, Claude Code, OpenClaw subagents, or any multi-agent setup.
+description: Multi-agent sprint protocol that prevents AI coding agents from declaring done without proof. Enforces spec freeze before build, role-separated agents (builder never verifies own work), explicit acceptance criteria (AC1, AC2...), and durable verdict artifacts in the repo. Use when briefing agents on any non-trivial coding task, sprint, or feature where you need verifiable proof of completion. Works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any harness that can read and write repo files.
 ---
 
 # Proof Loop

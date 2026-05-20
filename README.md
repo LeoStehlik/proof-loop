@@ -4,7 +4,7 @@
 
 Proof Loop is a lightweight protocol and toolkit for non-trivial coding tasks handled by AI agents. It freezes acceptance criteria before the build, separates builder and verifier roles, records durable proof artifacts in the repo, and refuses to call work done until every acceptance criterion has a fresh PASS verdict.
 
-Use it when an agent, team, or multi-agent sprint needs a hard boundary against false completion claims.
+Use it when an agent, team, or multi-agent sprint needs a hard boundary against false completion claims. Because the protocol is just files plus role discipline, it works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any other harness that can read and write a repository.
 
 ## Why It Exists
 
@@ -24,7 +24,7 @@ Proof Loop makes completion auditable. A task is done only when a fresh verifier
 - role boundaries for orchestrator, spec-freezer, builder, verifier, and fixer
 - helper scripts to initialize and check task proof folders
 - a complete example task with passing artifacts
-- copy-paste role briefs for Codex, Claude Code, OpenClaw, or any agent setup
+- copy-paste role briefs for OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any agent setup
 - a documented boundary with Loopsmith for recurring behaviour improvement
 
 ## Quick Start
@@ -172,7 +172,7 @@ git clone https://github.com/LeoStehlik/proof-loop.git /path/to/your/skills/proo
 
 ### Codex / Claude Code
 
-Copy the `proof-loop` folder into your agent skills directory, or reference `SKILL.md` directly in your task brief.
+Copy the `proof-loop` folder into your agent skills directory, or reference `SKILL.md` directly in your task brief. For harnesses without a formal skill system, use the README, role briefs, and scripts directly from the repo.
 
 ## Repository Map
 
