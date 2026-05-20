@@ -17,7 +17,7 @@ Use it when an agent, team, or multi-agent sprint needs a clear boundary between
 
 ![Proof Loop terminal demo showing a passing verifier report](assets/proof-loop-demo.jpg)
 
-
+![Animated terminal demo: Proof Loop doctor, check, and report commands](assets/proof-loop-terminal-demo.svg)
 
 ## 20-second demo
 
