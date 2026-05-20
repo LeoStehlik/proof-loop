@@ -1,0 +1,57 @@
+python3 examples/demo-repo/run_demo.py
+# Proof Loop demo: fail -> fix -> pass
+$ python3 /home/less/repo-garden-audit/repos/proof-loop/examples/demo-repo/check_nav_labels.py /tmp/tmpgh13lyve/nav_labels.json
+NAV_LABEL_CHECK_FAIL
+{
+  "en": {
+    "home": "Home",
+    "settings": "Settings",
+    "billing": "Billing"
+  },
+  "de": {
+    "home": "Startseite",
+    "settings": "Einstellungen",
+    "billing": "Billing"
+  }
+}
+exit=1
+# applying fix
+$ python3 /home/less/repo-garden-audit/repos/proof-loop/examples/demo-repo/check_nav_labels.py /tmp/tmpgh13lyve/nav_labels.json
+NAV_LABEL_CHECK_PASS
+exit=0
+$ /home/less/repo-garden-audit/repos/proof-loop/bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof
+# Proof Report - nav-labels-proof
+
+Overall: **PASS**
+
+## Acceptance Criteria
+
+| AC | Status | Note |
+|---|---|---|
+| AC1 | PASS | Demo check confirms expected English labels. |
+| AC2 | PASS | Demo check confirms expected German labels. |
+| AC3 | PASS | Verifier inspected the check script; mismatches return exit status 1. |
+
+## Evidence Summary
+
+# Evidence - nav-labels-proof
+## Build Summary
+The demo fixture contains `examples/demo-repo/nav_labels.json` and a real check command at `examples/demo-repo/check_nav_labels.py`.
+## Checks Run
+```bash
+python3 examples/demo-repo/check_nav_labels.py examples/demo-repo/nav_labels.json
+```
+Result:
+```text
+NAV_LABEL_CHECK_PASS
+```
+## AC1 - PASS
+
+## Raw Logs
+
+- `raw/check-nav-labels.txt`
+
+## Problems
+
+No open problems.
+exit=0

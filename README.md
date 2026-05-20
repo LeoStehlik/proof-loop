@@ -27,6 +27,8 @@ A completed passing example is included:
 
 ```bash
 bin/proof-loop-check examples/example-task/.agent/tasks/ui-language-fix
+bin/proof-loop doctor
+bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof --format md
 ```
 
 ## Why It Exists
@@ -49,6 +51,18 @@ Proof Loop makes completion auditable. A task is done only when a fresh verifier
 - a complete example task with passing artifacts
 - copy-paste role briefs for OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any agent setup
 - a documented boundary with Loopsmith for recurring behaviour improvement
+
+## CLI
+
+```bash
+bin/proof-loop init TASK_ID --title "Task title"
+bin/proof-loop check TASK_ID
+bin/proof-loop status TASK_ID
+bin/proof-loop list
+bin/proof-loop doctor
+bin/proof-loop report TASK_ID --format md
+bin/proof-loop install-guides --dry-run --harness codex --harness claude
+```
 
 ## Quick Start
 
@@ -152,6 +166,16 @@ Every task stores proof under `.agent/tasks/<TASK_ID>/`.
 
 See [`references/artifacts.md`](references/artifacts.md) for schemas.
 
+## Real Demo
+
+Run a small failing-to-passing demo:
+
+```bash
+make demo
+```
+
+The demo intentionally breaks a tiny navigation-label fixture, shows the check failing, applies the fix, reruns the check, and renders a proof report.
+
 ## Examples
 
 A complete passing example lives at:
@@ -220,11 +244,14 @@ Copy the `proof-loop` folder into your agent skills directory, or reference `SKI
 proof-loop/
   SKILL.md                         skill trigger and core operating rules
   bin/
-    proof-loop-init                wrapper usable from another repository
-    proof-loop-check               wrapper usable from another repository
+    proof-loop                     unified CLI
+    proof-loop-init                compatibility wrapper
+    proof-loop-check               compatibility wrapper
   scripts/
     init_task.py                   create .agent/tasks/<TASK_ID>/ skeletons
     check_task.py                  mechanical done gate
+  schemas/                         JSON schemas for verdict and evidence bundles
+  templates/                       opt-in harness guide templates
   tests/                           stdlib unittest coverage for CLI behavior
   .github/workflows/test.yml       CI running make test
   references/

@@ -99,6 +99,60 @@ class ProofLoopCliTests(unittest.TestCase):
             self.assertNotEqual(check.returncode, 0)
             self.assertIn("PROOF_LOOP_FAIL", check.stdout)
 
+    def test_unified_cli_status_list_doctor_report_and_validate(self) -> None:
+        report_task = ROOT / "examples" / "demo-repo" / ".agent" / "tasks" / "nav-labels-proof"
+        doctor = run(ROOT / "bin" / "proof-loop", "doctor")
+        self.assertEqual(doctor.returncode, 0, doctor.stdout)
+        self.assertIn("PROOF_LOOP_DOCTOR_PASS", doctor.stdout)
+
+        status = run(ROOT / "bin" / "proof-loop", "status", report_task)
+        self.assertEqual(status.returncode, 0, status.stdout)
+        self.assertIn("overall=PASS", status.stdout)
+
+        listing = run(ROOT / "bin" / "proof-loop", "list", "--root", ROOT / "examples" / "demo-repo")
+        self.assertEqual(listing.returncode, 0, listing.stdout)
+        self.assertIn("nav-labels-proof", listing.stdout)
+
+        validate = run(ROOT / "bin" / "proof-loop", "validate", report_task, "--require-evidence-json")
+        self.assertEqual(validate.returncode, 0, validate.stdout)
+        self.assertIn("PROOF_LOOP_SCHEMA_PASS", validate.stdout)
+
+        report = run(ROOT / "bin" / "proof-loop", "report", report_task, "--format", "md")
+        self.assertEqual(report.returncode, 0, report.stdout)
+        self.assertIn("# Proof Report - nav-labels-proof", report.stdout)
+        self.assertIn("| AC1 | PASS |", report.stdout)
+        self.assertIn("raw/check-nav-labels.txt", report.stdout)
+
+    def test_install_guides_dry_run_does_not_mutate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            result = run(
+                ROOT / "bin" / "proof-loop",
+                "install-guides",
+                "--root",
+                root,
+                "--dry-run",
+                "--harness",
+                "codex",
+                "--harness",
+                "claude",
+                "--harness",
+                "opencode",
+                "--harness",
+                "hermes",
+            )
+            self.assertEqual(result.returncode, 0, result.stdout)
+            self.assertIn("DRY_RUN codex", result.stdout)
+            self.assertFalse((root / "AGENTS.md").exists())
+            self.assertFalse((root / "CLAUDE.md").exists())
+
+    def test_demo_script_runs_fail_fix_pass_flow(self) -> None:
+        result = run("python3", ROOT / "examples" / "demo-repo" / "run_demo.py")
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertIn("NAV_LABEL_CHECK_FAIL", result.stdout)
+        self.assertIn("NAV_LABEL_CHECK_PASS", result.stdout)
+        self.assertIn("# Proof Report - nav-labels-proof", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

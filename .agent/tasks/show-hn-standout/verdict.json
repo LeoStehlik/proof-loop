@@ -1,0 +1,14 @@
+{
+  "task_id": "show-hn-standout",
+  "phase": "verify",
+  "agent": "francis-fresh-verifier",
+  "timestamp": "2026-05-20T16:20:00Z",
+  "overall": "PASS",
+  "criteria": [
+    {"id": "AC1", "status": "PASS", "note": "Unified CLI supports init/check/status/list/doctor/validate/report/install-guides and is covered by tests."},
+    {"id": "AC2", "status": "PASS", "note": "Schemas, evidence.json, raw logs, and schema validation are present and tested."},
+    {"id": "AC3", "status": "PASS", "note": "Harness guide templates exist and dry-run install is tested without mutation."},
+    {"id": "AC4", "status": "PASS", "note": "make demo shows failing check, fix, passing check, and proof report."},
+    {"id": "AC5", "status": "PASS", "note": "proof-loop report renders Markdown report with status table, evidence, raw logs, and problems state."}
+  ]
+}

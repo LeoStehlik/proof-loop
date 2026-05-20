@@ -1,0 +1,26 @@
+{
+  "task_id": "show-hn-standout",
+  "checks": [
+    {
+      "name": "full test suite",
+      "command": "make test",
+      "status": "PASS",
+      "raw_log": "raw/make-test.txt"
+    },
+    {
+      "name": "failing-to-passing demo",
+      "command": "make demo",
+      "status": "PASS",
+      "raw_log": "raw/make-demo.txt"
+    },
+    {
+      "name": "self proof gate",
+      "command": "python3 scripts/check_task.py .agent/tasks/show-hn-standout",
+      "status": "PASS"
+    }
+  ],
+  "raw_logs": [
+    "raw/make-test.txt",
+    "raw/make-demo.txt"
+  ]
+}
