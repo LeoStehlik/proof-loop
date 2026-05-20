@@ -10,6 +10,7 @@ A sprint is not done until every acceptance criterion has a PASS verdict from a 
 Read `references/workflow.md` for the full loop spec.
 Read `references/brief-template.md` for the agent brief format.
 Read `references/artifacts.md` for the artifact schema.
+Read `references/loopsmith-bridge.md` when deciding whether a repeated Proof Loop failure should become a Loopsmith eval case.
 
 ## The Loop
 
@@ -43,6 +44,17 @@ AC3: [specific, testable condition]
 
 Good: "AC1: A German-locale user sees all prompt form field labels in German"
 Bad: "AC1: Translate the form fields"
+
+## Helper Scripts
+
+Use these when the repository has the `proof-loop` folder available:
+
+```bash
+python3 scripts/init_task.py TASK_ID --title "Task title"
+python3 scripts/check_task.py .agent/tasks/TASK_ID
+```
+
+`check_task.py` is the mechanical done gate. It returns success only when the verifier artifacts show every AC as PASS and no open problems remain.
 
 ## Sprint is DONE Only When
 
