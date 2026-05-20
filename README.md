@@ -19,6 +19,8 @@ Use it when an agent, team, or multi-agent sprint needs a clear boundary between
 
 ![Animated terminal demo: Proof Loop doctor, check, and report commands](assets/proof-loop-terminal-demo.svg)
 
+Proof artifacts and role-brief examples are indexed in [`examples/README.md`](examples/README.md).
+
 ## 20-second demo
 
 ```bash
