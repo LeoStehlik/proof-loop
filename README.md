@@ -4,9 +4,16 @@
 
 **Make AI coding agents prove when work is done.**
 
-Proof Loop is a lightweight protocol and toolkit for non-trivial coding tasks handled by AI agents. It freezes acceptance criteria before the build, separates builder and verifier roles, records durable proof artifacts in the repo, and refuses to call work done until every acceptance criterion has a fresh PASS verdict.
+Proof Loop is a repo-local verification protocol for AI coding agents. It freezes acceptance criteria before the build, separates builder and verifier roles, records durable proof artifacts in the repo, and refuses to call work done until every acceptance criterion has a fresh PASS verdict.
 
 Use it when an agent, team, or multi-agent sprint needs a clear boundary between “looks done” and verified work. Because the protocol is just files plus role discipline, it works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any other harness that can read and write a repository.
+
+## Use Cases
+
+- keep AI coding agents honest when they claim a task is done
+- freeze acceptance criteria before implementation starts
+- separate builder and verifier roles in multi-agent coding work
+- leave proof artifacts in the repo for future review
 
 ![Proof Loop terminal demo showing a passing verifier report](assets/proof-loop-demo.jpg)
 
