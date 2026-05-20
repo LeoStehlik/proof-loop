@@ -1,10 +1,33 @@
 # Proof Loop
 
+![Tests](https://github.com/LeoStehlik/proof-loop/actions/workflows/test.yml/badge.svg)
+
 **Finish AI coding work with evidence, not vibes.**
 
 Proof Loop is a lightweight protocol and toolkit for non-trivial coding tasks handled by AI agents. It freezes acceptance criteria before the build, separates builder and verifier roles, records durable proof artifacts in the repo, and refuses to call work done until every acceptance criterion has a fresh PASS verdict.
 
 Use it when an agent, team, or multi-agent sprint needs a hard boundary against false completion claims. Because the protocol is just files plus role discipline, it works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any other harness that can read and write a repository.
+
+
+## 20-second demo
+
+```bash
+git clone https://github.com/LeoStehlik/proof-loop.git
+cd proof-loop
+make test
+
+tmp=$(mktemp -d)
+bin/proof-loop-init hn-demo --title "Prove this task before done" --root "$tmp"
+bin/proof-loop-check "$tmp/.agent/tasks/hn-demo"
+```
+
+The last command fails on purpose because the generated task has not been verified yet. Proof Loop only returns success after a fresh verifier records `PASS` for every acceptance criterion and `problems.md` is empty.
+
+A completed passing example is included:
+
+```bash
+bin/proof-loop-check examples/example-task/.agent/tasks/ui-language-fix
+```
 
 ## Why It Exists
 
@@ -31,10 +54,10 @@ Proof Loop makes completion auditable. A task is done only when a fresh verifier
 
 Clone the repo or copy it into the project where you want to run the protocol.
 
-Create a task proof folder:
+Create a task proof folder from this repo or from another repository:
 
 ```bash
-python3 scripts/init_task.py ui-language-fix --title "Fix German navigation labels"
+bin/proof-loop-init ui-language-fix --title "Fix German navigation labels" --root .
 ```
 
 This creates:
@@ -52,7 +75,7 @@ Fill `spec.md` with explicit acceptance criteria before implementation starts.
 After the build and verifier pass, check whether the task is allowed to be called done:
 
 ```bash
-python3 scripts/check_task.py .agent/tasks/ui-language-fix
+bin/proof-loop-check .agent/tasks/ui-language-fix
 ```
 
 The check exits non-zero unless:
@@ -60,6 +83,16 @@ The check exits non-zero unless:
 - `verdict.json` has `overall: PASS`
 - every AC has `status: PASS`
 - `problems.md` is empty or absent
+
+
+## What This Is Not
+
+- not an agent framework
+- not a benchmark suite
+- not a replacement for tests
+- not tied to one model, vendor, or harness
+
+Proof Loop is deliberately small: a protocol, a few files, and a mechanical done gate.
 
 ## The Protocol
 
@@ -186,9 +219,14 @@ Copy the `proof-loop` folder into your agent skills directory, or reference `SKI
 ```text
 proof-loop/
   SKILL.md                         skill trigger and core operating rules
+  bin/
+    proof-loop-init                wrapper usable from another repository
+    proof-loop-check               wrapper usable from another repository
   scripts/
     init_task.py                   create .agent/tasks/<TASK_ID>/ skeletons
     check_task.py                  mechanical done gate
+  tests/                           stdlib unittest coverage for CLI behavior
+  .github/workflows/test.yml       CI running make test
   references/
     workflow.md                    full phase-by-phase protocol
     brief-template.md              reusable sprint and role prompts

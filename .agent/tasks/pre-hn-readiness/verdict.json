@@ -1,0 +1,34 @@
+{
+  "task_id": "pre-hn-readiness",
+  "phase": "verify",
+  "agent": "francis-fresh-verifier",
+  "timestamp": "2026-05-20T15:55:00Z",
+  "overall": "PASS",
+  "criteria": [
+    {
+      "id": "AC1",
+      "status": "PASS",
+      "note": "make test passes and covers init, invalid IDs, unverified FAIL, completed PASS, invalid JSON, non-empty problems.md, and wrapper usage."
+    },
+    {
+      "id": "AC2",
+      "status": "PASS",
+      "note": "Absolute bin/proof-loop-init and bin/proof-loop-check were run from /tmp/proof-loop-wrapper-smoke/other-repo; init created artifacts and check failed until verification as expected."
+    },
+    {
+      "id": "AC3",
+      "status": "PASS",
+      "note": "examples/demo-repo has a real JSON fixture and checker; checker passes and the demo proof task passes check_task.py."
+    },
+    {
+      "id": "AC4",
+      "status": "PASS",
+      "note": ".github/workflows/test.yml runs make test and README contains the test badge."
+    },
+    {
+      "id": "AC5",
+      "status": "PASS",
+      "note": "README contains 20-second demo and What This Is Not; demo commands reference committed wrappers, Makefile, and examples."
+    }
+  ]
+}
