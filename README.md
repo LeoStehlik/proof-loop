@@ -1,108 +1,158 @@
-# proof-loop
+# Proof Loop
 
-Multi-agent sprint protocol. Prevents AI coding agents from declaring done without proof.
+**Finish AI coding work with evidence, not vibes.**
 
-**Status:** usable protocol skill with example artifacts, role briefs, and small helper scripts for initializing and checking task proof folders.
+Proof Loop is a lightweight protocol and toolkit for non-trivial coding tasks handled by AI agents. It freezes acceptance criteria before the build, separates builder and verifier roles, records durable proof artifacts in the repo, and refuses to call work done until every acceptance criterion has a fresh PASS verdict.
 
-The core idea: spec freeze before build, role-separated agents, explicit acceptance criteria, durable verdict artifacts in the repo. A sprint is not done until every AC has a PASS verdict from a fresh verifier session.
+Use it when an agent, team, or multi-agent sprint needs a hard boundary against false completion claims.
 
----
+## Why It Exists
 
-## The Problem
+AI coding agents often fail in predictable ways:
 
-Large multi-agent coding tasks fail in predictable ways:
+- they claim completion without durable proof
+- the same session builds and judges its own work
+- acceptance criteria drift while implementation is underway
+- verification is a prose summary instead of a live check
+- future sessions cannot tell what was actually tested
 
-- The agent claims the job is done without durable proof
-- The same session both implements and judges its own work
-- Acceptance criteria drift during the task
-- A later session cannot tell what was actually verified
-- The verifier approves based on code review, not a live test
+Proof Loop makes completion auditable. A task is done only when a fresh verifier has checked each AC and the repo contains the artifacts to prove it.
 
-Proof loop addresses all of these.
+## What You Get
 
----
-
-## Proof Loop vs Loopsmith
-
-Proof Loop governs a single task: frozen ACs, separate verifier, durable verdict artifacts.
-
-Loopsmith improves repeated agent behaviour over time: baseline vs candidate, eval packs, promotion/rejection, and a ledger.
-
-Use Proof Loop inside a task. Use Loopsmith when the same failure pattern keeps coming back and the agent, prompt, or policy itself needs measurable improvement. See [`references/loopsmith-bridge.md`](references/loopsmith-bridge.md).
-
-## The Loop
-
-```
-spec freeze -> build -> evidence -> FRESH verify -> fix -> FRESH verify
-                                         ^                      |
-                                         |______________________|
-                                         (repeat until all ACs = PASS)
-```
-
----
-
-## Four Roles
-
-| Role | Does | Never |
-|------|------|-------|
-| Spec-Freezer | Writes spec.md with explicit ACs | Edits production code |
-| Builder | Implements against frozen spec | Verifies own work |
-| Verifier | Fresh session, verdicts each AC | Edits production code |
-| Fixer | Minimal fix for what verifier flagged | Signs off on completion |
-
-**The verifier is always a fresh session.** The agent that built cannot judge its own work.
-
----
-
-## Acceptance Criteria Format
-
-```
-AC1: A user with locale=de sees all navigation labels in German
-     Verify: browser test against demo tenant with German locale
-
-AC2: POST /api/v1/translate/de returns 200 with translated titles
-     Verify: curl command or automated test
-
-AC3: Full regression suite passes
-     Verify: pnpm test:e2e — all spec files green
-```
-
-Good: specific, testable by a third party.
-Bad: "Translate the UI", "Make it work in German", "Fix the bugs".
-
----
+- a clear sprint protocol: spec freeze -> build -> evidence -> fresh verify -> fix loop
+- role boundaries for orchestrator, spec-freezer, builder, verifier, and fixer
+- helper scripts to initialize and check task proof folders
+- a complete example task with passing artifacts
+- copy-paste role briefs for Codex, Claude Code, OpenClaw, or any agent setup
+- a documented boundary with Loopsmith for recurring behaviour improvement
 
 ## Quick Start
 
-Initialize a task folder in any repository:
+Clone the repo or copy it into the project where you want to run the protocol.
+
+Create a task proof folder:
 
 ```bash
 python3 scripts/init_task.py ui-language-fix --title "Fix German navigation labels"
 ```
 
-Check whether a task is allowed to be called done:
+This creates:
+
+```text
+.agent/tasks/ui-language-fix/
+  spec.md
+  verdict.json
+  problems.md
+  evidence.md
+```
+
+Fill `spec.md` with explicit acceptance criteria before implementation starts.
+
+After the build and verifier pass, check whether the task is allowed to be called done:
 
 ```bash
 python3 scripts/check_task.py .agent/tasks/ui-language-fix
 ```
 
-The check exits non-zero unless `verdict.json` has `overall: PASS`, every AC is `PASS`, and `problems.md` is empty or absent.
+The check exits non-zero unless:
 
-## Artifacts (in repo)
+- `verdict.json` has `overall: PASS`
+- every AC has `status: PASS`
+- `problems.md` is empty or absent
 
+## The Protocol
+
+```text
+spec freeze -> build -> evidence -> fresh verify -> fix -> fresh verify
+                                         ^                    |
+                                         |____________________|
+                                      repeat until all ACs PASS
 ```
+
+## Roles
+
+| Role | Does | Never |
+|---|---|---|
+| Orchestrator | Keeps the loop intact and refuses weak completion | Accepts narrative-only proof |
+| Spec-Freezer | Writes frozen `spec.md` with explicit ACs | Edits production code |
+| Builder | Implements against the frozen spec | Verifies own work as final |
+| Verifier | Fresh session that checks each AC | Edits production code |
+| Fixer | Applies minimal fixes for verifier findings | Signs off on completion |
+
+The verifier must be a fresh session. The agent that built the change does not judge whether the change is done.
+
+## Acceptance Criteria
+
+Good ACs are specific and testable by a third party.
+
+```text
+AC1: A user with locale=de sees all navigation labels in German after saving language preference.
+     Verify: browser check against a German-locale test user.
+
+AC2: The language preference survives page reload.
+     Verify: reload the page and confirm the saved locale and labels remain German.
+
+AC3: Existing English navigation remains unchanged for locale=en.
+     Verify: switch back to English and confirm the original labels render.
+```
+
+Weak ACs are task descriptions, not proof conditions:
+
+```text
+AC1: Translate the UI.
+AC2: Make language switching work.
+AC3: Fix the bugs.
+```
+
+## Artifacts
+
+Every task stores proof under `.agent/tasks/<TASK_ID>/`.
+
+```text
 .agent/tasks/<TASK_ID>/
-  spec.md         -- frozen ACs + constraints + non-goals
-  verdict.json    -- AC verdicts per phase (PASS/FAIL/UNKNOWN)
-  problems.md     -- specific failures with file/line refs
-  evidence.md     -- prose build summary (optional)
+  spec.md       frozen ACs, constraints, non-goals, verification approach
+  evidence.md   build summary and checks run
+  verdict.json  structured verifier result: PASS / FAIL / UNKNOWN per AC
+  problems.md   specific open failures, empty when no problems remain
 ```
 
----
+See [`references/artifacts.md`](references/artifacts.md) for schemas.
 
-## Installation
+## Examples
+
+A complete passing example lives at:
+
+```text
+examples/example-task/.agent/tasks/ui-language-fix/
+```
+
+Role prompts live at:
+
+```text
+examples/role-briefs/
+  orchestrator.md
+  spec-freezer.md
+  builder.md
+  verifier.md
+  fixer.md
+```
+
+## Proof Loop vs Loopsmith
+
+Proof Loop governs a single task.
+
+Loopsmith improves repeated agent behaviour over time.
+
+Use Proof Loop when you need a specific task to finish with evidence. Use [Loopsmith](https://github.com/LeoStehlik/loopsmith) when the same failure pattern keeps coming back and you want to improve the agent, prompt, policy, or evaluator itself.
+
+See [`references/loopsmith-bridge.md`](references/loopsmith-bridge.md).
+
+## Installation As A Skill
 
 ### OpenClaw
+
+Add your skills directory to `openclaw.json`:
 
 ```json
 {
@@ -114,42 +164,42 @@ The check exits non-zero unless `verdict.json` has `overall: PASS`, every AC is 
 }
 ```
 
+Clone this repo into that directory:
+
 ```bash
 git clone https://github.com/LeoStehlik/proof-loop.git /path/to/your/skills/proof-loop
 ```
 
-### Claude Code / Codex
+### Codex / Claude Code
 
-Copy the `proof-loop` folder into `.agents/skills/` or `.claude/skills/`, then invoke with `/proof-loop`.
+Copy the `proof-loop` folder into your agent skills directory, or reference `SKILL.md` directly in your task brief.
 
----
+## Repository Map
 
-## What's Inside
-
-```
+```text
 proof-loop/
-├── SKILL.md                           Core protocol + role table
-├── references/
-│   ├── workflow.md                    Full phase-by-phase spec
-│   ├── brief-template.md              Copy-paste brief + role prompts
-│   ├── artifacts.md                   spec.md / verdict.json / problems.md schemas
-│   └── loopsmith-bridge.md            Boundary between task proof and eval harness
-├── scripts/
-│   ├── init_task.py                   Create a .agent/tasks/<TASK_ID>/ skeleton
-│   └── check_task.py                  Done gate for task proof artifacts
-└── examples/
-    ├── example-task/                  Complete proof artifact example
-    └── role-briefs/                   Copy-paste prompts by role
+  SKILL.md                         skill trigger and core operating rules
+  scripts/
+    init_task.py                   create .agent/tasks/<TASK_ID>/ skeletons
+    check_task.py                  mechanical done gate
+  references/
+    workflow.md                    full phase-by-phase protocol
+    brief-template.md              reusable sprint and role prompts
+    artifacts.md                   artifact schemas
+    loopsmith-bridge.md            when to escalate repeated failures to Loopsmith
+  examples/
+    example-task/                  complete passing proof artifact example
+    role-briefs/                   copy-paste role prompts
 ```
 
----
+## Status
 
-## Inspiration
-
-Inspired by [repo-task-proof-loop](https://github.com/DenisSergeevitch/repo-task-proof-loop). Built as our own implementation with a focus on multi-agent team workflows and the lessons from running real sprints.
-
----
+Usable protocol skill and small toolkit. The scripts are intentionally stdlib-only so they can run inside almost any repository without packaging ceremony.
 
 ## License
 
-MIT - see [LICENSE](LICENSE)
+MIT - see [LICENSE](LICENSE).
+
+## Attribution
+
+Inspired by [`repo-task-proof-loop`](https://github.com/DenisSergeevitch/repo-task-proof-loop), adapted for practical multi-agent coding work and public agent-operation skills.
