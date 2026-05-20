@@ -148,6 +148,13 @@ Use Proof Loop when you need a specific task to finish with evidence. Use [Loops
 
 See [`references/loopsmith-bridge.md`](references/loopsmith-bridge.md).
 
+
+## Related Tools
+
+- [Loopsmith](https://github.com/LeoStehlik/loopsmith) - use when Proof Loop exposes a repeated agent behaviour problem that should become an eval and promotion loop.
+- [Sovereign Brain](https://github.com/LeoStehlik/decoupled-agent-memory) - source-backed memory for long-running agents; useful when proof artifacts, decisions, and synthesis need durable context.
+- [Brief Master](https://github.com/LeoStehlik/brief-master) - helps write sharper task briefs and acceptance criteria before a Proof Loop starts.
+
 ## Installation As A Skill
 
 ### OpenClaw
