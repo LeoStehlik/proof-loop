@@ -8,6 +8,9 @@ Proof Loop is a lightweight protocol and toolkit for non-trivial coding tasks ha
 
 Use it when an agent, team, or multi-agent sprint needs a clear boundary between “looks done” and verified work. Because the protocol is just files plus role discipline, it works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any other harness that can read and write a repository.
 
+![Proof Loop terminal demo showing a passing verifier report](assets/proof-loop-demo.jpg)
+
+
 
 ## 20-second demo
 
