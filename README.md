@@ -8,6 +8,13 @@ Proof Loop is a repo-local verification protocol for AI coding agents. It freeze
 
 Use it when an agent, team, or multi-agent sprint needs a clear boundary between “looks done” and verified work. Because the protocol is just files plus role discipline, it works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any other harness that can read and write a repository.
 
+
+## Activation and Safety
+
+Use Proof Loop when the user explicitly wants an evidence-gated coding sprint, frozen acceptance criteria, fresh verifier separation, or durable proof artifacts. It is not meant to silently wrap every code change.
+
+The bundled helpers create and check repo-local files under `.agent/tasks/<TASK_ID>/`. Review the task id and repository root before running them. Publishing reports, using remote workers, changing permissions, or running elevated commands are outside this skill unless requested separately.
+
 ## Use Cases
 
 - keep AI coding agents honest when they claim a task is done

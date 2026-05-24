@@ -2,7 +2,7 @@
 name: proof-loop
 description: "Run evidence-gated coding sprints with frozen ACs, separated builder/verifier roles, and durable proof artifacts."
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 # Proof Loop
 
@@ -12,6 +12,15 @@ Read `references/workflow.md` for the full loop spec.
 Read `references/brief-template.md` for the agent brief format.
 Read `references/artifacts.md` for the artifact schema.
 Read `references/loopsmith-bridge.md` when deciding whether a repeated Proof Loop failure should become a Loopsmith eval case.
+
+
+## Activation and Safety Boundaries
+
+Use this skill only when the user explicitly asks for Proof Loop, proof artifacts, acceptance-criterion verification, fresh verifier separation, or an evidence-gated coding sprint. Do not activate it for ordinary code edits where the user did not request this protocol.
+
+Proof Loop may create or update files under `.agent/tasks/<TASK_ID>/` in the current repository. Confirm the task id and repository root before creating artifacts. Do not publish artifacts, run remote validation, change repository permissions, moderate users, request full-access sandboxing, or touch credentials unless the user explicitly asks for that separate action in the current conversation.
+
+Run helper scripts with the least privilege available. If a command could modify source files outside `.agent/tasks/<TASK_ID>/`, ask first and record the command in the evidence artifact.
 
 ## The Loop
 
