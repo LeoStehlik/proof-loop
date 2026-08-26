@@ -28,6 +28,21 @@ bin/proof-loop check /path/to/repo/.agent/tasks/maintenance-check
 
 The first check should fail until a fresh verifier records `PASS` for every frozen acceptance criterion and clears `problems.md`. That failure is the point: Proof Loop gives agents a mechanical done gate instead of a confident paragraph.
 
+## Works With
+
+Proof Loop is harness-agnostic. Use it with any coding agent that can read files, write files, run commands, and hand verification to a fresh session.
+
+Known-fit surfaces:
+
+- Codex
+- Claude Code
+- OpenClaw
+- OpenCode
+- Hermes
+- custom multi-agent runners
+
+The repo includes copy-paste guide templates for several harnesses under `templates/`, plus role briefs under `examples/role-briefs/`.
+
 
 ## Activation and Safety
 
