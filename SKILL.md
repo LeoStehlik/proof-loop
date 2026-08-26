@@ -2,7 +2,7 @@
 name: proof-loop
 description: "Run evidence-gated coding sprints with frozen ACs, separated builder/verifier roles, and durable proof artifacts."
 metadata:
-  version: "0.2.1"
+  version: "0.2.3"
 ---
 # Proof Loop
 
