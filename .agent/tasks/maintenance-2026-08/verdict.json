@@ -1,0 +1,29 @@
+{
+  "task_id": "maintenance-2026-08",
+  "phase": "verify",
+  "agent": "fresh-proof-loop-verifier",
+  "timestamp": "2026-08-26T09:23:43Z",
+  "overall": "PASS",
+  "criteria": [
+    {
+      "id": "AC1",
+      "status": "PASS",
+      "note": "gh release list shows v0.2.1 as Latest, with v0.2.0 and v0.1.0 also present."
+    },
+    {
+      "id": "AC2",
+      "status": "PASS",
+      "note": "README.md has a near-top Start Here section with clone, make test, doctor, init, and check commands before the deeper protocol, while existing protocol detail, examples, and safety boundaries remain present."
+    },
+    {
+      "id": "AC3",
+      "status": "PASS",
+      "note": "Task directory contains frozen spec.md, evidence.md, this verifier PASS verdict, and an empty problems.md."
+    },
+    {
+      "id": "AC4",
+      "status": "PASS",
+      "note": "gh issue list shows open follow-up issues #1-#4 covering example artifact, install/adoption docs, distribution options, and release/project-status maintenance."
+    }
+  ]
+}

@@ -8,6 +8,26 @@ Proof Loop is a repo-local verification protocol for AI coding agents. It freeze
 
 Use it when an agent, team, or multi-agent sprint needs a clear boundary between “looks done” and verified work. Because the protocol is just files plus role discipline, it works with OpenClaw, Hermes, Codex, OpenCode, Claude Code, or any other harness that can read and write a repository.
 
+## Start Here
+
+Run the current proof gate first:
+
+```bash
+git clone https://github.com/LeoStehlik/proof-loop.git
+cd proof-loop
+make test
+bin/proof-loop doctor
+```
+
+Start a proof-tracked task in any repo:
+
+```bash
+bin/proof-loop init maintenance-check --title "Refresh the README proof" --root /path/to/repo
+bin/proof-loop check /path/to/repo/.agent/tasks/maintenance-check
+```
+
+The first check should fail until a fresh verifier records `PASS` for every frozen acceptance criterion and clears `problems.md`. That failure is the point: Proof Loop gives agents a mechanical done gate instead of a confident paragraph.
+
 
 ## Activation and Safety
 
