@@ -6,9 +6,11 @@ test:
 	python3 examples/demo-repo/check_nav_labels.py examples/demo-repo/nav_labels.json
 	python3 scripts/check_task.py examples/example-task/.agent/tasks/ui-language-fix
 	python3 scripts/check_task.py examples/demo-repo/.agent/tasks/nav-labels-proof
+	python3 scripts/check_task.py examples/adoption-kit/.agent/tasks/checkout-empty-state-proof
 	bin/proof-loop doctor
 	bin/proof-loop validate examples/demo-repo/.agent/tasks/nav-labels-proof --require-evidence-json
 	bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof --format md >/tmp/proof-loop-report.md
+	bin/proof-loop report examples/adoption-kit/.agent/tasks/checkout-empty-state-proof --format md >/tmp/proof-loop-adoption-report.md
 
 .PHONY: demo
 
