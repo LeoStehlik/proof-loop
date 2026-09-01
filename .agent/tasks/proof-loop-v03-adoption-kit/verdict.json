@@ -1,0 +1,39 @@
+{
+  "task_id": "proof-loop-v03-adoption-kit",
+  "phase": "pre-release-verify",
+  "agent": "builder-local-checks",
+  "timestamp": "2026-09-01T00:55:00Z",
+  "overall": "UNKNOWN",
+  "criteria": [
+    {
+      "id": "AC1",
+      "status": "PASS",
+      "note": "README has near-top adoption commands and links to docs/adoption-kit.md and examples/adoption-kit/."
+    },
+    {
+      "id": "AC2",
+      "status": "PASS",
+      "note": "docs/adoption-kit.md covers create/freeze/builder/verifier/done-gate/good-state flow."
+    },
+    {
+      "id": "AC3",
+      "status": "PASS",
+      "note": "New adoption example passes proof-loop check and schema validation with evidence JSON."
+    },
+    {
+      "id": "AC4",
+      "status": "PASS",
+      "note": "make test passes locally and now includes the adoption example done gate."
+    },
+    {
+      "id": "AC5",
+      "status": "UNKNOWN",
+      "note": "Pre-release version surface is ready; GitHub tag/release/Actions pending merge."
+    },
+    {
+      "id": "AC6",
+      "status": "UNKNOWN",
+      "note": "ClawHub publish/install/inspect pending clean tag archive."
+    }
+  ]
+}
