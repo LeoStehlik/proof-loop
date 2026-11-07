@@ -1,3 +1,8 @@
+# 0.3.3
+
+- Align optional OpenCode guidance with explicit workflow opt-in.
+- Make checker and template wording explicit: artifact consistency is not authenticated verifier attestation.
+
 # 0.3.2
 
 - Keep public proof fixtures outside hidden directories filtered by ClawHub.

@@ -12,3 +12,7 @@ The navigation-label checker is a demo fixture, not the skill implementation. Lo
 ## Trust boundary
 
 Files remain editable by their owner. The checker does not authenticate agent identities, attest execution, or certify evidence truth. A fresh verifier must inspect evidence. Mechanical PASS is not a cryptographic CI attestation.
+
+## Follow-up review
+
+The 0.3.2 scanner still objects to self-reported verifier identity and editable local specifications. This is the documented file-based discipline trust boundary, not cryptographic attestation. The optional OpenCode template’s broader trigger was inconsistent with SKILL.md and is now aligned with explicit opt-in. No identity/signature enforcement or unrequested external trust service was added.

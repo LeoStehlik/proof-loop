@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate whether a Proof Loop task is allowed to be called done."""
+"""Validate local artifact consistency; this does not authenticate a verifier or attest execution."""
 
 from __future__ import annotations
 
