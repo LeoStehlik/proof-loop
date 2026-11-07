@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "examples/demo-repo/.agent/tasks/nav-labels-proof"
+SOURCE = ROOT / "examples/demo-repo/tasks/nav-labels-proof"
 
 class ArtifactRegressionTests(unittest.TestCase):
     def run_case(self, change, command="check"):
@@ -14,7 +14,7 @@ class ArtifactRegressionTests(unittest.TestCase):
             task = Path(tmp) / SOURCE.name
             shutil.copytree(SOURCE, task)
             change(task)
-            result = subprocess.run([str(ROOT / "bin/proof-loop"), command, str(task)], capture_output=True, text=True)
+            result = subprocess.run(["python3", str(ROOT / "bin/proof-loop"), command, str(task)], capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0, result.stdout)
             self.assertNotIn("Traceback", result.stderr)
 

@@ -13,7 +13,7 @@ Fast path:
 
 ```bash
 make test
-bin/proof-loop check examples/demo-repo/.agent/tasks/nav-labels-proof
-bin/proof-loop check examples/adoption-kit/.agent/tasks/checkout-empty-state-proof
-bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof --format md
+bin/proof-loop check examples/demo-repo/tasks/nav-labels-proof
+bin/proof-loop check examples/adoption-kit/tasks/checkout-empty-state-proof
+bin/proof-loop report examples/demo-repo/tasks/nav-labels-proof --format md
 ```

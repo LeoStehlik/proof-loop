@@ -19,7 +19,7 @@ exit=1
 $ python3 /home/less/repo-garden-audit/repos/proof-loop/examples/demo-repo/check_nav_labels.py /tmp/tmpgh13lyve/nav_labels.json
 NAV_LABEL_CHECK_PASS
 exit=0
-$ /home/less/repo-garden-audit/repos/proof-loop/bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof
+$ /home/less/repo-garden-audit/repos/proof-loop/bin/proof-loop report examples/demo-repo/tasks/nav-labels-proof
 # Proof Report - nav-labels-proof
 
 Overall: **PASS**

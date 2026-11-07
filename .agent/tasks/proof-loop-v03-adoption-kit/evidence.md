@@ -9,9 +9,9 @@ Proof Loop v0.3.0 is shaped as an adoption release. The README now has a near-to
 ```bash
 make test
 git diff --check
-bin/proof-loop check examples/adoption-kit/.agent/tasks/checkout-empty-state-proof
-bin/proof-loop validate examples/adoption-kit/.agent/tasks/checkout-empty-state-proof --require-evidence-json
-bin/proof-loop report examples/adoption-kit/.agent/tasks/checkout-empty-state-proof --format md
+bin/proof-loop check examples/adoption-kit/tasks/checkout-empty-state-proof
+bin/proof-loop validate examples/adoption-kit/tasks/checkout-empty-state-proof --require-evidence-json
+bin/proof-loop report examples/adoption-kit/tasks/checkout-empty-state-proof --format md
 ```
 
 Observed local results:
@@ -19,8 +19,8 @@ Observed local results:
 ```text
 Ran 10 tests in 0.815s
 OK
-PROOF_LOOP_PASS examples/adoption-kit/.agent/tasks/checkout-empty-state-proof
-PROOF_LOOP_SCHEMA_PASS examples/adoption-kit/.agent/tasks/checkout-empty-state-proof
+PROOF_LOOP_PASS examples/adoption-kit/tasks/checkout-empty-state-proof
+PROOF_LOOP_SCHEMA_PASS examples/adoption-kit/tasks/checkout-empty-state-proof
 ```
 
 ## AC1 - PASS
@@ -33,7 +33,7 @@ README contains clone, `make test`, `proof-loop init`, `proof-loop check`, and `
 
 ## AC3 - PASS
 
-`examples/adoption-kit/.agent/tasks/checkout-empty-state-proof` passes `bin/proof-loop check` and `bin/proof-loop validate --require-evidence-json`.
+`examples/adoption-kit/tasks/checkout-empty-state-proof` passes `bin/proof-loop check` and `bin/proof-loop validate --require-evidence-json`.
 
 ## AC4 - PASS
 

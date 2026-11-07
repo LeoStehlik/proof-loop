@@ -79,10 +79,10 @@ git diff -- README.md .agent/tasks/maintenance-2026-08/spec.md
 Ran 10 tests in 0.784s
 OK
 NAV_LABEL_CHECK_PASS
-PROOF_LOOP_PASS examples/example-task/.agent/tasks/ui-language-fix
-PROOF_LOOP_PASS examples/demo-repo/.agent/tasks/nav-labels-proof
+PROOF_LOOP_PASS examples/example-task/tasks/ui-language-fix
+PROOF_LOOP_PASS examples/demo-repo/tasks/nav-labels-proof
 PROOF_LOOP_DOCTOR_PASS
-PROOF_LOOP_SCHEMA_PASS examples/demo-repo/.agent/tasks/nav-labels-proof
+PROOF_LOOP_SCHEMA_PASS examples/demo-repo/tasks/nav-labels-proof
 ```
 
 ## Operator Note

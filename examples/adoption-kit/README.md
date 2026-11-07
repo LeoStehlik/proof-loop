@@ -12,6 +12,6 @@ Read:
 Run:
 
 ```bash
-bin/proof-loop check examples/adoption-kit/.agent/tasks/checkout-empty-state-proof
-bin/proof-loop report examples/adoption-kit/.agent/tasks/checkout-empty-state-proof --format md
+bin/proof-loop check examples/adoption-kit/tasks/checkout-empty-state-proof
+bin/proof-loop report examples/adoption-kit/tasks/checkout-empty-state-proof --format md
 ```

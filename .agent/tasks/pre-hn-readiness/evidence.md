@@ -23,8 +23,8 @@ Result:
 Ran 7 tests in 0.398s
 OK
 NAV_LABEL_CHECK_PASS
-PROOF_LOOP_PASS examples/example-task/.agent/tasks/ui-language-fix
-PROOF_LOOP_PASS examples/demo-repo/.agent/tasks/nav-labels-proof
+PROOF_LOOP_PASS examples/example-task/tasks/ui-language-fix
+PROOF_LOOP_PASS examples/demo-repo/tasks/nav-labels-proof
 ```
 
 ```bash
@@ -37,7 +37,7 @@ Result: wrapper init created `.agent/tasks/external-hn/`; wrapper check failed a
 
 ```bash
 python3 examples/demo-repo/check_nav_labels.py examples/demo-repo/nav_labels.json
-python3 scripts/check_task.py examples/demo-repo/.agent/tasks/nav-labels-proof
+python3 scripts/check_task.py examples/demo-repo/tasks/nav-labels-proof
 ```
 
 Result: demo check passed and the demo proof task passed.

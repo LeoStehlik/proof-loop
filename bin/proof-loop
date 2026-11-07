@@ -98,7 +98,6 @@ def cmd_doctor(args: argparse.Namespace) -> int:
         ("verdict schema", ROOT / "schemas" / "verdict.schema.json"),
         ("evidence schema", ROOT / "schemas" / "evidence.schema.json"),
         ("demo fixture", ROOT / "examples" / "demo-repo" / "nav_labels.json"),
-        ("test workflow", ROOT / ".github" / "workflows" / "test.yml"),
     ]
     missing = []
     for label, path in checks:

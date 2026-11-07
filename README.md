@@ -100,9 +100,9 @@ The last command fails on purpose because the generated task has not been verifi
 A completed passing example is included:
 
 ```bash
-bin/proof-loop-check examples/example-task/.agent/tasks/ui-language-fix
+bin/proof-loop-check examples/example-task/tasks/ui-language-fix
 bin/proof-loop doctor
-bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof --format md
+bin/proof-loop report examples/demo-repo/tasks/nav-labels-proof --format md
 ```
 
 ## Why It Exists
@@ -255,7 +255,7 @@ The demo intentionally breaks a tiny navigation-label fixture, shows the check f
 A complete passing example lives at:
 
 ```text
-examples/example-task/.agent/tasks/ui-language-fix/
+examples/example-task/tasks/ui-language-fix/
 ```
 
 Role prompts live at:

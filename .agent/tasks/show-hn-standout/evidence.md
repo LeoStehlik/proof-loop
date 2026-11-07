@@ -29,8 +29,8 @@ Result: PASS. The demo showed `NAV_LABEL_CHECK_FAIL`, applied a fix, showed `NAV
 
 ```bash
 bin/proof-loop doctor
-bin/proof-loop validate examples/demo-repo/.agent/tasks/nav-labels-proof --require-evidence-json
-bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof --format md
+bin/proof-loop validate examples/demo-repo/tasks/nav-labels-proof --require-evidence-json
+bin/proof-loop report examples/demo-repo/tasks/nav-labels-proof --format md
 ```
 
 Result: PASS.

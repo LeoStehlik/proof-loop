@@ -70,4 +70,4 @@ A finished task has:
 - an empty `problems.md`
 - a final `proof-loop check` pass
 
-See `examples/adoption-kit/.agent/tasks/checkout-empty-state-proof/` for a compact completed example.
+See `examples/adoption-kit/tasks/checkout-empty-state-proof/` for a compact completed example.

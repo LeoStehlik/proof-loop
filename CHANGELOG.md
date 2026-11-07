@@ -1,3 +1,8 @@
+# 0.3.2
+
+- Keep public proof fixtures outside hidden directories filtered by ClawHub.
+- Do not require GitHub CI metadata for runtime doctor checks; tests use explicit interpreters when registry installs omit executable bits.
+
 # 0.3.1
 
 - Reject empty/incomplete verdicts, missing ACs, duplicate or extra ACs, wrong task/phase, and missing evidence/problems artifacts.

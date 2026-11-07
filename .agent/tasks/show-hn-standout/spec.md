@@ -19,7 +19,7 @@ Build the next five standout Proof Loop slices so the repo is stronger than a no
 - Verify: run `make demo`; output must show an initial failing check, a fix, evidence/report generation, and final PASS.
 
 **AC5:** The repo can generate a Markdown proof report for a task.
-- Verify: run `bin/proof-loop report examples/demo-repo/.agent/tasks/nav-labels-proof --format md`; output must contain task id, overall status, AC table, evidence summary, raw log references, and problems state.
+- Verify: run `bin/proof-loop report examples/demo-repo/tasks/nav-labels-proof --format md`; output must contain task id, overall status, AC table, evidence summary, raw log references, and problems state.
 
 ## Constraints
 

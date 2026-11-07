@@ -13,7 +13,7 @@ Ship Proof Loop v0.3.0 as an adoption release that turns existing credibility in
 - Verify: `docs/adoption-kit.md` contains task creation, AC freeze, builder prompt, fresh verifier prompt, done gate, and good-state checklist.
 
 **AC3:** A compact completed proof artifact example exists and passes the mechanical done gate.
-- Verify: run `bin/proof-loop check examples/adoption-kit/.agent/tasks/checkout-empty-state-proof`.
+- Verify: run `bin/proof-loop check examples/adoption-kit/tasks/checkout-empty-state-proof`.
 
 **AC4:** Existing tests and examples remain green.
 - Verify: run `make test`.

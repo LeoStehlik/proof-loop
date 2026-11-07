@@ -27,4 +27,4 @@ Make sure the demo navigation labels contain the expected English and German str
 
 ## Verification Approach
 
-Run the demo check command and then run `scripts/check_task.py examples/demo-repo/.agent/tasks/nav-labels-proof`.
+Run the demo check command and then run `scripts/check_task.py examples/demo-repo/tasks/nav-labels-proof`.
