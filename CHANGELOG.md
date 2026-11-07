@@ -1,3 +1,8 @@
+# 0.3.1
+
+- Reject empty/incomplete verdicts, missing ACs, duplicate or extra ACs, wrong task/phase, and missing evidence/problems artifacts.
+- Validate nested artifact types, enums, timestamps and required fields; document the mechanical gate’s trust boundary.
+
 # Changelog
 
 ## v0.3.0
